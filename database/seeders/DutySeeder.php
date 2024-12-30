@@ -27,30 +27,10 @@ class DutySeeder extends Seeder
             'Mop Section A',
             'Mop Section B'
         ];
-        $bawahDuties = [
-            'Section A',
-            'Section B',
-            'Cermin',
-            'Meja',
-            'Sampah',
-            'Toilet',
-            'Mop Section A',
-            'Mop Section B',
-            'Filter'
-        ];
 
         foreach ($atasDuties as $duty) {
             Duty::create([
-                'name' => $duty,
-                'gender' => Arr::random(['Lelaki', 'Perempuan', 'Lelaki & Perempuan']),
-                'office_position' => 'Atas',
-            ]);
-        }
-        foreach ($bawahDuties as $duty) {
-            Duty::create([
-                'name' => $duty,
-                'gender' => Arr::random(['Lelaki', 'Perempuan', 'Lelaki & Perempuan']),
-                'office_position' => 'Bawah',
+                'description' => $duty,
             ]);
         }
     }

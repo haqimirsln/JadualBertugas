@@ -9,9 +9,9 @@ class Duty extends Model
 {
     use HasFactory;
 
+    protected $table = 'duty';
     protected $fillable = [
-        'name',
-        'gender',
-        'office_position',
+        'description',
+        
     ];
 }
