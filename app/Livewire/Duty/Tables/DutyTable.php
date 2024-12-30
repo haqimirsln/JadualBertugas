@@ -22,7 +22,7 @@ class DutyTable extends BaseDataTable
 
     public function getColumns()
     {
-        $name = TextColumn::make('name')->label('Tugas')->sortable();
+        $name = TextColumn::make('description')->label('Tugas')->sortable();
         $gender = TextColumn::make('gender')->label('Tugas Untuk?')->sortable()->color(fn(string $state): string => match ($state) {
             'Lelaki' => 'info',
             'Perempuan' => 'danger',
