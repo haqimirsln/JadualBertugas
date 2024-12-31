@@ -20,7 +20,7 @@
                     Senarai Pengguna
                 </x-filament::button>
             </x-slot>
-            <livewire:pengguna.tables.pengguna-tables />
+            <livewire:pengguna.tables.pengguna-tables /
         </x-filament::modal> --}}
 
 

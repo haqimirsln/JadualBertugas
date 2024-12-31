@@ -11,7 +11,8 @@ class DutyScheduleController extends Controller
 {
     public function index()
     {
-        return view('admin.duty.index');
+        $headerTitle = 'Jadual Bertugas';
+        return view('admin.duty.index', compact('headerTitle'));
     }
 
     public function print()
