@@ -19,25 +19,31 @@
 
 </head>
 
-<body class="h-screen overflow-hidden">
+<body class="h-screen overflow-hidden" x-data="{
+    isCollapsed: $persist(false),
+    isHovered: false,
+}">
+    <div class="flex h-full w-full overflow-hidden">
+        {{-- @include('components.layouts.sidebar') --}}
+        <x-layouts.side-bar />
+        <div class="flex flex-1 flex-col overflow-y-auto">
 
-    <div class="grid md:grid-cols-5 h-full">
-        <div class="md:col-span-5 sm:col-span-6 overflow-y-auto {{-- scrollbar-hide --}} bg-gray-100">
-            <div>
-                <div class="px-6">
-
-                    @if (isset($welcome))
-                        <div>
-                            {{ $welcome }}
-                        </div>
-                    @endif
-
+            @include('components.layouts.top-navbar')
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header>
+                    <div class="max-w-7xl mx-auto  py-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+            <main class="py-12 mb-32">
+                <div {{ $attributes->merge(['class' => 'px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto']) }}>
                     {{ $slot }}
-                    <br>
                 </div>
-            </div>
-
+            </main>
         </div>
+        <div class="fixed inset-0 hidden bg-black bg-opacity-50" id="sidebarBackdrop"></div>
     </div>
 
     @livewire('notifications')
