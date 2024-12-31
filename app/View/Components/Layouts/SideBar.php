@@ -43,7 +43,19 @@ class SideBar extends Component
                 [
                     'name' => 'Pengguna',
                     'route' => route('users.index'),
-                    'named' => 'admin.properties*',
+                    'named' => 'users*',
+                    'icon' => 'heroicon-s-users'
+                ],
+                [
+                    'name' => 'Lokasi',
+                    'route' => route('location.index'),
+                    'named' => 'location*',
+                    'icon' => 'heroicon-o-map-pin'
+                ],
+                [
+                    'name' => 'Tugas',
+                    'route' => route('duty.index'),
+                    'named' => 'duty*',
                     'icon' => 'heroicon-s-users'
                 ],
             ],

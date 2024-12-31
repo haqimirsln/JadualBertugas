@@ -1,3 +1,5 @@
 <x-layouts.admin>
-    index page
+    <livewire:pengguna.tables.pengguna-tables />
+    
+
 </x-admin>
