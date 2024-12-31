@@ -12,6 +12,5 @@ class Duty extends Model
     protected $table = 'duty';
     protected $fillable = [
         'description',
-        
     ];
 }

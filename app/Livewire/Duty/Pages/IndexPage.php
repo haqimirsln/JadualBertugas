@@ -13,10 +13,19 @@ class IndexPage extends Component implements HasForms, HasActions
 {
     use InteractsWithForms, InteractsWithActions;
 
-    public function create()
+    public function tugas()
     {
-        $this->dispatch('show')->to(FormModal::class);
+        $this->dispatch('tugas')->to(FormModal::class);
     }
+    public function lokasi()
+    {
+        $this->dispatch('lokasi')->to(FormModal::class);
+    }
+    public function pengguna()
+    {
+        $this->dispatch('pengguna')->to(FormModal::class);
+    }
+
 
     public function render()
     {
