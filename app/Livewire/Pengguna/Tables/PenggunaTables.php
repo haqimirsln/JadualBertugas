@@ -24,12 +24,14 @@ class PenggunaTables extends BaseDataTable
         $name = TextInput::make('name')->label('Nama')->required();
         $email = TextInput::make('email')->label('Email')->required();
 
-        $officePosition = Radio::make('location')->label('Posisi Pejabat')->helperText('Staff tersebut berada di posisi pejabat atas atau bawah?')->required()
+        $officePosition = Radio::make('location_id')
+            ->label('Posisi Pejabat')
+            ->helperText('Staff tersebut berada di posisi pejabat atas atau bawah?')
+            ->required()
             ->options([
                 '1' => 'Atas',
                 '2' => 'Bawah'
             ]);
-
         return [
             $name,
             $email,
@@ -40,6 +42,7 @@ class PenggunaTables extends BaseDataTable
     {
         // dd('masuk sini');
         return $table
+            ->heading('Senarai Pengguna')
             ->query($this->getQuery())
             ->columns([
                 TextColumn::make('name')->label('Nama')->sortable(),

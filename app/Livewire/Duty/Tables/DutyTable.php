@@ -65,6 +65,8 @@ class DutyTable extends BaseDataTable
     public function table(Table $table): Table
     {
         return $table->query($this->getQuery())
+            ->heading('Senarai Tugas')
+
             ->headerActions([
                 CreateAction::make()
                     ->label('Tambah Tugas')

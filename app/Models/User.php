@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'location_id',
     ];
 
     /**
@@ -51,5 +52,5 @@ class User extends Authenticatable
         return $this->belongsTo(Location::class);
     }
 
-    
+
 }

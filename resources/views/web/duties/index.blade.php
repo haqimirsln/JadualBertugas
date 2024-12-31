@@ -1,4 +1,3 @@
 <x-layouts.admin>
-    {{-- <livewire:duty.tables.duties-tables /> --}}
-tugas
+    <livewire:duty.tables.duty-table />
 </x-admin>

@@ -8,6 +8,7 @@ class DutyController extends Controller
 {
     public function index()
     {
-        return view('web.duties.index');
+        $headerTitle = 'Senarai Tugas';
+        return view('web.duties.index', compact('headerTitle'));
     }
 }

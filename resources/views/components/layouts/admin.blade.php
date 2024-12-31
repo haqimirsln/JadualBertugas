@@ -38,7 +38,8 @@
                 </header>
             @endif
             <main class="py-12 mb-32">
-                <div {{ $attributes->merge(['class' => 'px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto']) }}>
+                <div {{ $attributes->merge(['class' => 'px-4 sm:px-6  max-w-9xl mx-auto']) }}>
+
                     {{ $slot }}
                 </div>
             </main>

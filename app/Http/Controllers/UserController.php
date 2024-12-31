@@ -6,8 +6,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('web.users.index');
+        $headerTitle = 'Senarai Pengguna';
+        return view('web.users.index', compact('headerTitle'));
     }
-    
+
 
 }
