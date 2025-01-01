@@ -1,5 +1,3 @@
 <x-layouts.admin>
-    {{-- <livewire:duty.tables.duties-tables /> --}}
-xD location index
-
+    <livewire:location.tables.location-table />
 </x-admin>

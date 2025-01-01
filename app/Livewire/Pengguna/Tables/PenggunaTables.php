@@ -4,6 +4,8 @@ namespace App\Livewire\Pengguna\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\User;
+
+use App\Models\Location;
 use Livewire\Component;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -19,6 +21,10 @@ class PenggunaTables extends BaseDataTable
     {
         return User::query()->latest();
     }
+    public function getLocation()
+    {
+        return Location::all();
+    }
     public function getFormFields()
     {
         $name = TextInput::make('name')->label('Nama')->required();
@@ -28,10 +34,7 @@ class PenggunaTables extends BaseDataTable
             ->label('Posisi Pejabat')
             ->helperText('Staff tersebut berada di posisi pejabat atas atau bawah?')
             ->required()
-            ->options([
-                '1' => 'Atas',
-                '2' => 'Bawah'
-            ]);
+            ->options($this->getLocation()->pluck('description', 'id')->toArray());
         return [
             $name,
             $email,
@@ -47,10 +50,7 @@ class PenggunaTables extends BaseDataTable
             ->columns([
                 TextColumn::make('name')->label('Nama')->sortable(),
                 TextColumn::make('email')->label('Email')->sortable(),
-                TextColumn::make('location.description')->label('Lokasi')->sortable()->badge()->color(fn(string $state): string => match ($state) {
-                    'Atas' => 'info',
-                    'Bawah' => 'danger',
-                }),
+                TextColumn::make('location.description')->label('Lokasi')->sortable()->badge(),
             ])->actions([
                 ViewAction::make()
                     ->icon(false)
