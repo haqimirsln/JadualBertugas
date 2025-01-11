@@ -13,18 +13,30 @@ class LocationSeeder extends Seeder
     public function run(): void
     {
         $locations = [
-            'Pejabat Atas',
-            'Pejabat Bawah',
+            'Pejabat Atas' => [
+                'Section A',
+                'Section B'
+            ],
+            'Pejabat Bawah' => [
+                'Section A',
+                'Section B'
+            ]
         ];
 
-        $creates = [];
+        foreach ($locations as $parent => $childLocations) {
 
-        foreach ($locations as $location) {
-            $creates[] = [
-                'name' => $location
-            ];
+            $parentLocation = Location::create([
+                'name' => $parent
+            ]);
+
+            $creates = [];
+            foreach ($childLocations as $childLocation) {
+                $creates[] = [
+                    'name' => $childLocation
+                ];
+            }
+
+            $parentLocation->childLocations()->createMany($creates);
         }
-
-        Location::insert($creates);
     }
 }
