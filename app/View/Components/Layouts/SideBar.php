@@ -33,30 +33,30 @@ class SideBar extends Component
         return [
             'Utama' => [
                 [
-                    'name' => 'Dashboard',
+                    'name' => 'Jana Jadual Bertugas',
                     'route' => route('home'),
                     'named' => 'dashboard*',
-                    'icon' => 'heroicon-o-chart-pie',
-                ],
+                    'icon' => 'phosphor-calendar-dots',
+                ]
             ],
             'Kawalan' => [
                 [
-                    'name' => 'Pengguna',
-                    'route' => route('users.index'),
-                    'named' => 'users*',
-                    'icon' => 'heroicon-s-users'
+                    'name' => 'Kakitangan',
+                    'route' => route('staff.index'),
+                    'named' => 'staff*',
+                    'icon' => 'phosphor-users-three'
                 ],
                 [
                     'name' => 'Lokasi',
                     'route' => route('location.index'),
                     'named' => 'location*',
-                    'icon' => 'heroicon-o-map-pin'
+                    'icon' => 'phosphor-map-pin-area'
                 ],
                 [
                     'name' => 'Tugas',
                     'route' => route('duty.index'),
                     'named' => 'duty*',
-                    'icon' => 'heroicon-s-users'
+                    'icon' => 'phosphor-broom'
                 ],
             ],
 

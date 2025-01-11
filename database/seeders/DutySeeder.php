@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Duty;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 
 class DutySeeder extends Seeder
 {
@@ -14,9 +12,9 @@ class DutySeeder extends Seeder
      */
     public function run(): void
     {
-        $atasDuties = [
-            'Section A',
-            'Section B',
+        $duties = [
+            // 'Section A',
+            // 'Section B',
             'Cermin + Partition',
             'Meja Meeting',
             'Sampah',
@@ -24,14 +22,19 @@ class DutySeeder extends Seeder
             'Surau',
             'Tangga',
             'Filter',
-            'Mop Section A',
-            'Mop Section B'
+            'Mop',
+            // 'Mop Section A',
+            // 'Mop Section B'
         ];
 
-        foreach ($atasDuties as $duty) {
-            Duty::create([
-                'description' => $duty,
-            ]);
+        $creates = [];
+
+        foreach ($duties as $duty) {
+            $creates[] = [
+                'name'  => $duty
+            ];
         }
+
+        Duty::insert($creates);
     }
 }

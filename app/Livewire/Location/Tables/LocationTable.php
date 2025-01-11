@@ -10,65 +10,31 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\Action;
 
 class LocationTable extends BaseDataTable
 {
-
-    public function getFormFields()
-    {
-        $name = TextInput::make('description')->label('Lokasi')->required();
-        return [
-            $name,
-        ];
-    }
     public function table(Table $table): Table
     {
-        return $table->query($this->getQuery())
+        $form = [
+            TextInput::make('name')->label('Lokasi')->required()
+        ];
+
+        return $table->query(Location::query()->latest())
             ->heading('Senarai Lokasi')
-            ->headerActions([
-                CreateAction::make()
-                    ->label('Tambah Lokasi')
-                    ->icon('heroicon-s-plus')
-                    ->modalHeading('Maklumat Lokasi')
-                    ->modalDescription('Tambah Maklumat Lokasi')
-                    ->model(Location::class)
-                    // ->slideOver()
-                    ->modalWidth('xl')
-                    ->color('info')
-                    ->createAnother(false)
-                    ->modalSubmitActionLabel('Simpan')
-                    ->modalCancelActionLabel('Batalkan')
-                    ->form($this->getFormFields())
-            ])
             ->columns([
-                TextColumn::make('description')->label('Lokasi')
+                TextColumn::make('index')->label('#')->rowIndex(),
+                TextColumn::make('name')->label('Lokasi')
+            ])
+            ->headerActions([
+                CreateAction::make('add-location')
+                    ->model(Location::class)
+                    ->createAnother(false)
+                    ->form($form)
             ])->actions([
                 EditAction::make()
-                    ->icon(false)
-                    ->modalHeading('Maklumat Lokasi')
-                    ->modalDescription('Kemaskini Maklumat Lokasi')
-                    ->button()
-                    ->label('Kemaskini')
-                    // ->slideOver()
-                    ->modalWidth('xl')
-                    ->color('info')
-                    ->modalSubmitActionLabel('Simpan')
-                    ->modalCancelActionLabel('Batalkan')
-                    ->form($this->getFormFields()),
+                    ->form($form),
                 DeleteAction::make()
-                    ->icon(false)
-                    ->button()
-                    ->color('danger')
-                    ->modalWidth('xl')
-                    ->label('Padam')
-                    ->requiresConfirmation()
-                    ->action(fn(Location $record) => $record->delete())
             ])
         ;
-    }
-    public function getQuery()
-    {
-        return Location::query()->latest();
     }
 }
