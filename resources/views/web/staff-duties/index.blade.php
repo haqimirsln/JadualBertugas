@@ -1,3 +1,3 @@
 <x-layouts.admin>
-    <livewire:staff-duty.data-table />
+    <livewire:staff-duties.data-table />
 </x-admin>

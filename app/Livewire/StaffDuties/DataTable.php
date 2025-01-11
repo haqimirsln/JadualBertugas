@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\StaffDuty;
+namespace App\Livewire\StaffDuties;
 
 use App\Livewire\BaseDataTable;
 use App\Models\StaffDuty;

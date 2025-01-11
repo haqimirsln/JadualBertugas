@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Location;
+namespace App\Livewire\Locations;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Location;
