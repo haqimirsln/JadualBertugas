@@ -4,14 +4,14 @@ namespace App\Livewire\Duty\Tables;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Duty;
-use Filament\Forms\Components\Radio;
+use App\Models\Location;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class DutyTable extends BaseDataTable
 {
@@ -24,18 +24,28 @@ class DutyTable extends BaseDataTable
                 ->required(),
             Select::make('locations')
                 ->label('Lokasi')
-                ->relationship('locations', 'name')
+                ->relationship('locations', 'name', fn(Builder $query) => $query->orderBy('parent_id')->orderBy('name'))
+                ->getOptionLabelFromRecordUsing(function (Location $location) {
+                    if (is_null($location->parent_id)) {
+                        return $location->name;
+                    } else {
+                        return $location->parentLocation->name  . ' - ' .  $location->name;
+                    }
+                })
                 ->preload()
                 ->multiple()
-                ->required()
         ];
 
         return $table->query(Duty::query()->latest())
             ->heading('Senarai Tugas')
             ->columns([
-                TextColumn::make('index')->label('#')->rowIndex(),
-                TextColumn::make('name')->label('Tugas'),
-                TextColumn::make('locations.name')->label('Lokasi')
+                TextColumn::make('index')
+                    ->label('#')
+                    ->rowIndex(),
+                TextColumn::make('name')
+                    ->label('Tugas'),
+                TextColumn::make('locations.name')
+                    ->badge()->label('Lokasi')
             ])
             ->headerActions([
                 CreateAction::make()

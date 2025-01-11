@@ -1,3 +1,3 @@
 <x-layouts.admin>
-    <livewire:location.tables.location-table />
+    <livewire:location.data-table />
 </x-admin>

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Livewire\Location\Tables;
+namespace App\Livewire\Location;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Location;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Support\Enums\ActionSize;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\CreateAction;
@@ -15,12 +14,18 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Grouping\Group;
 
-class LocationTable extends BaseDataTable
+class DataTable extends BaseDataTable
 {
     public function table(Table $table): Table
     {
         $form = [
             TextInput::make('name')->label('Nama Lokasi')->required(),
+            Select::make('duties')
+                ->label('Tugasan')
+                ->multiple()
+                ->relationship('duties', 'name')
+                ->preload()
+                ->searchable()
         ];
 
         return $table->query(Location::query()->orderBy('parent_id'))
@@ -35,7 +40,8 @@ class LocationTable extends BaseDataTable
             ->columns([
                 TextColumn::make('index')->label('#')->rowIndex(),
                 TextColumn::make('name')->label('Lokasi'),
-                TextColumn::make('childLocations.name')->label('Sublokasi')
+                // TextColumn::make('childLocations.name')->label('Sublokasi'),
+                TextColumn::make('duties.name')->label('Tugasan')->badge()
             ])
             ->headerActions([
                 CreateAction::make('add-sub-location')
@@ -53,7 +59,8 @@ class LocationTable extends BaseDataTable
                             ->inline()
                             ->inlineLabel(false)
                             ->required()
-                            ->options(Location::whereNull('parent_id')->pluck('name', 'id'))
+                            ->options(Location::whereNull('parent_id')->pluck('name', 'id')),
+                        Select::make('duties')->label('Tugasan')->relationship('duties')->preload()->searchable()
                     ]),
                 CreateAction::make('add-location')
                     ->model(Location::class)

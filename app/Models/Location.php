@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
@@ -26,6 +27,11 @@ class Location extends Model
     public function childLocations(): HasMany
     {
         return $this->hasMany(Location::class, 'parent_id', 'id');
+    }
+
+    public function duties(): BelongsToMany
+    {
+        return $this->belongsToMany(Duty::class, DutyLocation::class);
     }
 
     public function scopeParent($query): Builder
