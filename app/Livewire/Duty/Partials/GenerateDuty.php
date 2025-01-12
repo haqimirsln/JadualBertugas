@@ -2,10 +2,6 @@
 
 namespace App\Livewire\Duty\Partials;
 
-use App\Models\Duty;
-use App\Models\Employee;
-use App\Models\Intern;
-use Carbon\Carbon;
 use Livewire\Component;
 
 class GenerateDuty extends Component

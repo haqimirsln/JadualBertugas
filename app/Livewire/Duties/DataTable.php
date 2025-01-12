@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Duty\Tables;
+namespace App\Livewire\Duties;
 
 use App\Livewire\BaseDataTable;
 use App\Models\Duty;
@@ -13,7 +13,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
-class DutyTable extends BaseDataTable
+class DataTable extends BaseDataTable
 {
 
     public function table(Table $table): Table

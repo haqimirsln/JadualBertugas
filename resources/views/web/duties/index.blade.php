@@ -1,3 +1,3 @@
 <x-layouts.admin>
-    <livewire:duty.tables.duty-table />
+    <livewire:duties.data-table />
 </x-admin>

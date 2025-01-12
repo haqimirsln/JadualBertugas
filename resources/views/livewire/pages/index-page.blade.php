@@ -8,6 +8,5 @@
             Senarai Tugas
         </button>
     </div>
-    <livewire:duty.modals.form-modal />
     <x-filament-actions::modals />
 </div>
